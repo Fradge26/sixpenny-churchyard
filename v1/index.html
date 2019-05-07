@@ -573,7 +573,7 @@
         }
     ;
 
-    let map = L.map('map').setView([50.955192, -2.0078855], 19);
+    var map = L.map('map').setView([50.955192, -2.0078855], 19);
     L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
         maxZoom: 23,
         subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
@@ -619,22 +619,19 @@
         featureNames.push({featureId: featureId, featureName: featureName});
     }
 
-    $(document).ready(function () {
-        let table = $('#example').DataTable({
+    $(document).ready(function() {
+        let table = $('#example').DataTable( {
             select: true,
             data: featureNames,
-            columns: [{"title": "Id", "data": "featureId"},
-                {"title": "Full Name", "data": "featureName"}],
+            columns: [ { "title": "Id", "data": "featureId" },
+                { "title": "Full Name", "data": "featureName" }],
             dom: 'Bfrtip',
-            buttons: [{
-                text: 'Zoom to Grave',
-                function() {
+            buttons: [ {text: 'Zoom to Grave',
+                action: function ( e, dt, node, config ) {
+                    //alert( "Id:");
                     map.flyTo(markersById[data[0]].getLatLng(), 20);
                     markersById[data[0]].openPopup();
                 }
-            }],
-            columnDefs: [{
-                className: "dt-head-left", targets: [0, 1]
             }]
         });
 
@@ -642,13 +639,13 @@
             if ($(this).hasClass('selected')) {
                 $(this).removeClass('selected');
 
-                let data = Object.values(table.row(this).data());
+                data = Object.values(table.row(this).data());
                 markersById[data[0]].closePopup();
             } else {
                 table.$('tr.selected').removeClass('selected');
                 $(this).addClass('selected');
 
-                let data = Object.values(table.row(this).data());
+                data = Object.values(table.row(this).data());
                 markersById[data[0]].openPopup();
             }
         });
