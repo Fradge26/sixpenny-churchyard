@@ -661,7 +661,7 @@
     $(document).ready(function() {
         let table = $('#example').DataTable( {
             select: true,
-			responsive: true,
+			"responsive": true,
             data: featureNames,
             columns: [ { "title": "Id", "data": "featureId" },
                        { "title": "Forename", "data": "featureForename" },
@@ -676,6 +676,7 @@
                 }
             }]
         });
+		table.columns.adjust().responsive.recalc();
 
         $('#example tbody').on('click', 'tr', function () {
             if ($(this).hasClass('selected')) {
