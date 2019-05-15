@@ -16,6 +16,7 @@
             src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" charset="utf8"
             src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.js"></script>
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
           integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
@@ -661,7 +662,7 @@
     $(document).ready(function() {
         let table = $('#example').DataTable( {
             select: true,
-			"responsive": true,
+			responsive: {details: false},
             data: featureNames,
             columns: [ { "title": "Id", "data": "featureId" },
                        { "title": "Forename", "data": "featureForename" },
