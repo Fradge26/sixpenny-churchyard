@@ -611,6 +611,7 @@
         subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
         attribution: 'Imagery ©2019 Google, Map data ©2019 NRF SBF'
     }).addTo(map);
+	let initialZoomLevel = map.getZoom()	
 	L.control.locate({flyTo: true,
 	                  showCompass: true,
 					  showPopup:true}).addTo(map);
@@ -672,9 +673,9 @@
             dom: 'Bfrtip',
             buttons: [ {text: 'Zoom to Grave',
                 action: function ( e, dt, node, config ) {
-                    //alert( "Id:");
-                    map.flyTo(markersById[data[0]].getLatLng(), 20);
-                    markersById[data[0]].openPopup();
+					let p = markersById[data[0]];
+					map.flyTo(p.getLatLng(), initialZoomLevel + 1);
+                    p.openPopup();
                 }
             }]
         });
